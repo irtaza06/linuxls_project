@@ -1,0 +1,33 @@
+{% extends "linuxls/base.html" %}
+{% block content %}
+<div id="toc_container">
+<p class="toc_title">Contents</p>
+  <ul class="toc_list">
+  <li><a href="#First_Point_Header">1-Essentials</a>
+  <ul>
+    <li><a href="/post/10">1.1-Linux installation</a></li>
+    <li><a href="#First_Sub_Point_2">1.2-Use command line interface (CLI) and VIM editor</a></li>
+    <li><a href="#First_Sub_Point_2">1.3-Manage files and directories</a></li>
+    <li><a href="#First_Sub_Point_2">1.4-Compress files with tar command</a></li>
+    <li><a href="#First_Sub_Point_2">1.5-Extract data with grep command</a></li>
+    <li><a href="#First_Sub_Point_2">1.6-Find stuff with find command</a></li>
+    <li><a href="#First_Sub_Point_2">1.7-Install packages with apt-get/yum commands</a></li>
+    <li><a href="#First_Sub_Point_2">1.8-Understand piping</a></li>
+    <li><a href="#First_Sub_Point_2">1.9-What are shell varibles?</a></li>
+    <li><a href="#First_Sub_Point_2">1.10-What is meant by adding a directory path to a PATH variable?</a></li>
+  </ul>
+</li>
+<li><a href="#Second_Point_Header">2-PERMISSIONS</a></li>
+    <ul>
+        <li><a href="#Second_sub_point_1">2.1-Understand general file permissions</a></li>
+        <li><a href="#Second_sub_point_1">2.2-Modify general file permissions</a></li>
+        <li><a href="#Second_sub_point_1">2.3-Understand advance file permissions</a></li>
+        <li><a href="#Second_sub_point_1">2.4-Modify advance file permissions</a></li>
+        <li><a href="#Second_sub_point_1">2.5-Use case of advance file permissions</a></li>
+</div>
+
+<div class="alert alert-info" role="alert">
+    More stuff need to added to linux fundamentals page!<br>Idea is to link contents with the corresponding blog posts.<br>Each blog post consists of written material and a link to the youtube video
+</div>
+{% endblock content %}
+
