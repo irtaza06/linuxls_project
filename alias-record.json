@@ -1,0 +1,14 @@
+{
+     "Comment": "Creating Alias resource record sets in Route 53 for blue system",
+     "Changes": [{
+                "Action": "CREATE",
+                "ResourceRecordSet": {
+                            "Name": "thelinuxls.com",
+                            "Type": "A",
+                            "AliasTarget":{
+                                    "HostedZoneId": "Z215JYRZR1TBD5",
+                                    "DNSName": "dualstack.adcb00772dfa747a1846c9d667c25fa1-980954109.eu-central-1.elb.amazonaws.com",
+                                    "EvaluateTargetHealth": false
+                              }}
+                          }]
+}
