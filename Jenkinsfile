@@ -81,13 +81,13 @@ pipeline {
             }    
         }
 
-//        stage('Create an alias record') {
-//            steps {
-//                withAWS(region:'eu-central-1', credentials:'AWS-EKS') {
-//                    sh './create_alias_record.sh'
-//                }
-//            }    
-//        }
+        stage('Create an alias record') {
+            steps {
+                withAWS(region:'eu-central-1', credentials:'AWS-EKS') {
+                    sh './create_alias_record.sh'
+                }
+            }    
+        }
         
         stage('Update service/redirect to green') {
             input {
