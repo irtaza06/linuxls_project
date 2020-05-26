@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'EKS Managed Nodes (SSH access: true) [created by eksctl]'
+Mappings:
+  ServicePrincipalPartitionMap:
+    aws:
+      EC2: ec2.amazonaws.com
+      EKS: eks.amazonaws.com
+      EKSFargatePods: eks-fargate-pods.amazonaws.com
+    aws-cn:
+      EC2: ec2.amazonaws.com.cn
+      EKS: eks.amazonaws.com
+      EKSFargatePods: eks-fargate-pods.amazonaws.com
+Resources:
+  ManagedNodeGroup:
+    Type: 'AWS::EKS::Nodegroup'
+    Properties:
+      ClusterName: capstone
+      NodegroupName: worker-nodes
+      ScalingConfig:
+        MinSize: 2
+        MaxSize: 2
+        DesiredSize: 2
+      Subnets: !Split 
+        - ','
+        - !ImportValue 'eksctl-capstone-cluster::SubnetsPublic'
+      InstanceTypes:
+        - t2.micro
+      AmiType: AL2_x86_64
+      RemoteAccess:
+        Ec2SshKey: >-
+          eksctl-capstone-nodegroup-worker-nodes-ca:4d:12:c6:e1:4d:c0:08:6b:54:2f:54:e1:ed:74:00
+      NodeRole: !GetAtt NodeInstanceRole.Arn
+      Labels:
+        alpha.eksctl.io/cluster-name: capstone
+        alpha.eksctl.io/nodegroup-name: worker-nodes
+      Tags:
+        alpha.eksctl.io/nodegroup-name: worker-nodes
+        alpha.eksctl.io/nodegroup-type: managed
+  NodeInstanceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action:
+              - 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service:
+                - !FindInMap 
+                  - ServicePrincipalPartitionMap
+                  - !Ref 'AWS::Partition'
+                  - EC2
+        Version: 2012-10-17
+      ManagedPolicyArns:
+        - !Sub >-
+          arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonEKSWorkerNodePolicy'
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonEKS_CNI_Policy'
+      Path: /
+
