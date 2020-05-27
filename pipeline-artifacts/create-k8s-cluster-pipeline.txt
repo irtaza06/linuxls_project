@@ -1,0 +1,133 @@
+Branch indexing
+Connecting to https://api.github.com using irtaza06/****** (GitHub Access Token)
+Obtained Jenkinsfile from 8cd396834a544ea302e8c2d44326d8a24e6f375f
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/create-k8s-cluster_master
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+using credential github
+Cloning the remote Git repository
+Cloning with configured refspecs honoured and without tags
+Cloning repository https://github.com/irtaza06/create-k8s-cluster.git
+ > git init /var/lib/jenkins/workspace/create-k8s-cluster_master # timeout=10
+Fetching upstream changes from https://github.com/irtaza06/create-k8s-cluster.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials GitHub Access Token
+ > git fetch --no-tags --force --progress -- https://github.com/irtaza06/create-k8s-cluster.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+ > git config remote.origin.url https://github.com/irtaza06/create-k8s-cluster.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/master:refs/remotes/origin/master # timeout=10
+ > git config remote.origin.url https://github.com/irtaza06/create-k8s-cluster.git # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+No valid HEAD. Skipping the resetting
+ > git clean -fdx # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/irtaza06/create-k8s-cluster.git
+using GIT_ASKPASS to set credentials GitHub Access Token
+ > git fetch --no-tags --force --progress -- https://github.com/irtaza06/create-k8s-cluster.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+Checking out Revision 8cd396834a544ea302e8c2d44326d8a24e6f375f (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8cd396834a544ea302e8c2d44326d8a24e6f375f # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master 8cd396834a544ea302e8c2d44326d8a24e6f375f # timeout=10
+Commit message: "file: Jenkinsfile to create EKS k8s cluster"
+First time build. Skipping changelog.
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+ > git --version # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Authenticate into AWS)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ aws s3 ls
+2020-05-15 11:00:37 aws-static-bucket
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Create the EKS-k8s cluster)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $PUBKEY
+[Pipeline] {
+[Pipeline] sh
++ eksctl create cluster --name capstone --version 1.16 --region eu-central-1 --nodegroup-name worker-nodes --node-type t2.micro --nodes 2 --nodes-min 2 --nodes-max 2 --ssh-access --ssh-public-key **** --managed
+[ℹ]  eksctl version 0.19.0
+[ℹ]  using region eu-central-1
+[ℹ]  setting availability zones to [eu-central-1c eu-central-1a eu-central-1b]
+[ℹ]  subnets for eu-central-1c - public:192.168.0.0/19 private:192.168.96.0/19
+[ℹ]  subnets for eu-central-1a - public:192.168.32.0/19 private:192.168.128.0/19
+[ℹ]  subnets for eu-central-1b - public:192.168.64.0/19 private:192.168.160.0/19
+[ℹ]  using SSH public key "****" as "eksctl-capstone-nodegroup-worker-nodes-ca:4d:12:c6:e1:4d:c0:08:6b:54:2f:54:e1:ed:74:00" 
+[ℹ]  using Kubernetes version 1.16
+[ℹ]  creating EKS cluster "capstone" in "eu-central-1" region with managed nodes
+[ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial managed nodegroup
+[ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=eu-central-1 --cluster=capstone'
+[ℹ]  CloudWatch logging will not be enabled for cluster "capstone" in "eu-central-1"
+[ℹ]  you can enable it with 'eksctl utils update-cluster-logging --region=eu-central-1 --cluster=capstone'
+[ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "capstone" in "eu-central-1"
+[ℹ]  2 sequential tasks: { create cluster control plane "capstone", create managed nodegroup "worker-nodes" }
+[ℹ]  building cluster stack "eksctl-capstone-cluster"
+[ℹ]  deploying stack "eksctl-capstone-cluster"
+[ℹ]  building managed nodegroup stack "eksctl-capstone-nodegroup-worker-nodes"
+[ℹ]  deploying stack "eksctl-capstone-nodegroup-worker-nodes"
+[ℹ]  waiting for the control plane availability...
+[✔]  saved kubeconfig as "/var/lib/jenkins/.kube/config"
+[ℹ]  no tasks
+[✔]  all EKS cluster resources for "capstone" have been created
+[ℹ]  nodegroup "worker-nodes" has 2 node(s)
+[ℹ]  node "ip-192-168-14-204.eu-central-1.compute.internal" is ready
+[ℹ]  node "ip-192-168-68-17.eu-central-1.compute.internal" is ready
+[ℹ]  waiting for at least 2 node(s) to become ready in "worker-nodes"
+[ℹ]  nodegroup "worker-nodes" has 2 node(s)
+[ℹ]  node "ip-192-168-14-204.eu-central-1.compute.internal" is ready
+[ℹ]  node "ip-192-168-68-17.eu-central-1.compute.internal" is ready
+[ℹ]  kubectl command should work with "/var/lib/jenkins/.kube/config", try 'kubectl get nodes'
+[✔]  EKS cluster "capstone" in "eu-central-1" region is ready
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Create configfile/Update context)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ aws eks update-kubeconfig --name capstone
+Added new context arn:aws:eks:eu-central-1:397511642126:cluster/capstone to /var/lib/jenkins/.kube/config
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS

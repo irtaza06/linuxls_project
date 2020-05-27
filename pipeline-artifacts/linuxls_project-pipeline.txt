@@ -1,0 +1,482 @@
+Started by user Irtaza Hassan
+Replayed #3
+Connecting to https://api.github.com using irtaza06/****** (GitHub Access Token)
+Obtained Jenkinsfile from f4f32fce95cbb9b6a2360cf67ba48770ef4b327d
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/linuxls_project_master
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+using credential github
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/irtaza06/linuxls_project.git # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/irtaza06/linuxls_project.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials GitHub Access Token
+ > git fetch --no-tags --force --progress -- https://github.com/irtaza06/linuxls_project.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+Checking out Revision 8b197d09bdbdc64e29263d60f25f8717093e66a8 (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+Commit message: "fix: clean up"
+ > git rev-list --no-walk 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Lint Django-Project)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/linuxls_project_master@2
+[Pipeline] {
+[Pipeline] checkout
+using credential github
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/irtaza06/linuxls_project.git # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/irtaza06/linuxls_project.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials GitHub Access Token
+ > git fetch --no-tags --force --progress -- https://github.com/irtaza06/linuxls_project.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+Checking out Revision 8b197d09bdbdc64e29263d60f25f8717093e66a8 (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+Commit message: "fix: clean up"
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . python:3.7.3
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 119:126 --user=0:0 -v ${PROJECT_PATH}:/linuxls_project -w /linuxls_project -w /var/lib/jenkins/workspace/linuxls_project_master@2 -v /var/lib/jenkins/workspace/linuxls_project_master@2:/var/lib/jenkins/workspace/linuxls_project_master@2:rw,z -v /var/lib/jenkins/workspace/linuxls_project_master@2@tmp:/var/lib/jenkins/workspace/linuxls_project_master@2@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** python:3.7.3 cat
+$ docker top 5b49f6d9c63e3d16cc7daa892a5d4f0b4b180c51d7e06361211fbc08780f9d34 -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ pip3 install -r /linuxls_project/www/linuxls_website/requirements.txt
+Collecting astroid==2.4.1 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/46/c9/e9c2642dfb169590fb8bdb395f9329da042ee559c2ae7c1e612a3e5f40b4/astroid-2.4.1-py3-none-any.whl (214kB)
+Collecting Django==2.2.7 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/a0/36/463632a2e9161a7e713488d719a280e8cb0c7e3a66ed32a32e801891caae/Django-2.2.7-py3-none-any.whl (7.5MB)
+Collecting django-crispy-forms==1.8.0 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 3))
+  Downloading https://files.pythonhosted.org/packages/26/b0/71e60d4da12f2f6544a94bc50873956db99d02e130336d6150f6e25fd1e8/django_crispy_forms-1.8.0-py2.py3-none-any.whl (105kB)
+Collecting isort==4.3.21 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/e5/b0/c121fd1fa3419ea9bfd55c7f9c4fedfec5143208d8c7ad3ce3db6c623c21/isort-4.3.21-py2.py3-none-any.whl (42kB)
+Collecting lazy-object-proxy==1.4.3 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 5))
+  Downloading https://files.pythonhosted.org/packages/23/f8/69df5a663b59512eb9f9b84e7f203c48c7a933e460316e9ebf4db2871ae0/lazy_object_proxy-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (56kB)
+Collecting mccabe==0.6.1 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 6))
+  Downloading https://files.pythonhosted.org/packages/87/89/479dc97e18549e21354893e4ee4ef36db1d237534982482c3681ee6e7b57/mccabe-0.6.1-py2.py3-none-any.whl
+Collecting Pillow==6.2.1 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 7))
+  Downloading https://files.pythonhosted.org/packages/89/3e/31c2e5385d7588016c6f7ac552e81c3fff2bef4bc61b6f82f8177752405c/Pillow-6.2.1-cp37-cp37m-manylinux1_x86_64.whl (2.1MB)
+Collecting pylint==2.5.2 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 8))
+  Downloading https://files.pythonhosted.org/packages/37/6e/36419ec1bd2208e157dff7fc3e565b185394c0dc4901e9e2f983cb1d4b7f/pylint-2.5.2-py3-none-any.whl (324kB)
+Collecting pylint-django==2.0.15 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 9))
+  Downloading https://files.pythonhosted.org/packages/05/de/05ac82a29a7f4b08899b8b1b4bbd76782e2aefef416e3a8663074de0b1a5/pylint_django-2.0.15-py3-none-any.whl (70kB)
+Collecting pylint-plugin-utils==0.6 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 10))
+  Downloading https://files.pythonhosted.org/packages/f2/72/ed6a263988ea68a4236591205340630d34621f60dbfc661543d3b4216b5e/pylint_plugin_utils-0.6-py3-none-any.whl
+Collecting pytz==2019.3 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 11))
+  Downloading https://files.pythonhosted.org/packages/e7/f9/f0b53f88060247251bf481fa6ea62cd0d25bf1b11a87888e53ce5b7c8ad2/pytz-2019.3-py2.py3-none-any.whl (509kB)
+Collecting six==1.15.0 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 12))
+  Downloading https://files.pythonhosted.org/packages/ee/ff/48bde5c0f013094d729fe4b0316ba2a24774b3ff1c52d924a8a4cb04078a/six-1.15.0-py2.py3-none-any.whl
+Collecting sqlparse==0.3.0 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 13))
+  Downloading https://files.pythonhosted.org/packages/ef/53/900f7d2a54557c6a37886585a91336520e5539e3ae2423ff1102daf4f3a7/sqlparse-0.3.0-py2.py3-none-any.whl
+Collecting toml==0.10.1 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 14))
+  Downloading https://files.pythonhosted.org/packages/9f/e1/1b40b80f2e1663a6b9f497123c11d7d988c0919abbf3c3f2688e448c5363/toml-0.10.1-py2.py3-none-any.whl
+Collecting typed-ast==1.4.1 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 15))
+  Downloading https://files.pythonhosted.org/packages/5d/10/0c1e8aa723a2b0c4032e048d8e511df82c8a1262f0e1df5e4c54eb2613e9/typed_ast-1.4.1-cp37-cp37m-manylinux1_x86_64.whl (737kB)
+Collecting wrapt==1.12.1 (from -r /linuxls_project/www/linuxls_website/requirements.txt (line 16))
+  Downloading https://files.pythonhosted.org/packages/82/f7/e43cefbe88c5fd371f4cf0cf5eb3feccd07515af9fd6cf7dbf1d1793a797/wrapt-1.12.1.tar.gz
+Building wheels for collected packages: wrapt
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/b1/c2/ed/d62208260edbd3fa7156545c00ef966f45f2063d0a84f8208a
+Successfully built wrapt
+Installing collected packages: lazy-object-proxy, wrapt, typed-ast, six, astroid, sqlparse, pytz, Django, django-crispy-forms, isort, mccabe, Pillow, toml, pylint, pylint-plugin-utils, pylint-django
+Successfully installed Django-2.2.7 Pillow-6.2.1 astroid-2.4.1 django-crispy-forms-1.8.0 isort-4.3.21 lazy-object-proxy-1.4.3 mccabe-0.6.1 pylint-2.5.2 pylint-django-2.0.15 pylint-plugin-utils-0.6 pytz-2019.3 six-1.15.0 sqlparse-0.3.0 toml-0.10.1 typed-ast-1.4.1 wrapt-1.12.1
+WARNING: You are using pip version 19.1.1, however version 20.1.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+[Pipeline] sh
++ pylint /linuxls_project/www/linuxls_website/linuxls_website
+
+------------------------------------
+Your code has been rated at 10.00/10
+
+[Pipeline] }
+$ docker stop --time=1 5b49f6d9c63e3d16cc7daa892a5d4f0b4b180c51d7e06361211fbc08780f9d34
+$ docker rm -f 5b49f6d9c63e3d16cc7daa892a5d4f0b4b180c51d7e06361211fbc08780f9d34
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Lint Dockerfile)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/linuxls_project_master@2
+[Pipeline] {
+[Pipeline] checkout
+using credential github
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/irtaza06/linuxls_project.git # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/irtaza06/linuxls_project.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials GitHub Access Token
+ > git fetch --no-tags --force --progress -- https://github.com/irtaza06/linuxls_project.git +refs/heads/master:refs/remotes/origin/master # timeout=10
+Checking out Revision 8b197d09bdbdc64e29263d60f25f8717093e66a8 (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 8b197d09bdbdc64e29263d60f25f8717093e66a8 # timeout=10
+Commit message: "fix: clean up"
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -fdx # timeout=10
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . hadolint/hadolint:latest
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 119:126 -v ${PROJECT_PATH}:/linuxls_project -w /linuxls_project -w /var/lib/jenkins/workspace/linuxls_project_master@2 -v /var/lib/jenkins/workspace/linuxls_project_master@2:/var/lib/jenkins/workspace/linuxls_project_master@2:rw,z -v /var/lib/jenkins/workspace/linuxls_project_master@2@tmp:/var/lib/jenkins/workspace/linuxls_project_master@2@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** hadolint/hadolint:latest cat
+$ docker top 86dd8acff669b3440b1d64d0b583cd941d4cfe0044d774352840f9f42b35a78d -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ hadolint --ignore DL3009 /linuxls_project/Dockerfile
+[Pipeline] }
+$ docker stop --time=1 86dd8acff669b3440b1d64d0b583cd941d4cfe0044d774352840f9f42b35a78d
+$ docker rm -f 86dd8acff669b3440b1d64d0b583cd941d4cfe0044d774352840f9f42b35a78d
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker build -t irtaza06/linuxls:blue .
+Sending build context to Docker daemon  3.879MB
+Step 1/23 : FROM ubuntu:20.04
+ ---> 1d622ef86b13
+Step 2/23 : RUN apt-get update
+ ---> Using cache
+ ---> da23ad5be900
+Step 3/23 : RUN apt-get install -y tzdata=2020a-0ubuntu0.20.04 --no-install-recommends
+ ---> Using cache
+ ---> 9173a24108ae
+Step 4/23 : RUN apt-get install -y apt-utils=2.0.2ubuntu0.1 vim=2:8.1.2269-1ubuntu5 curl=7.68.0-1ubuntu2 --no-install-recommends
+ ---> Using cache
+ ---> 39a9c2cb5920
+Step 5/23 : RUN apt-get install -y apache2=2.4.41-4ubuntu3 apache2-utils=2.4.41-4ubuntu3 --no-install-recommends
+ ---> Using cache
+ ---> ca584ef92300
+Step 6/23 : RUN apt-get -y install python3=3.8.2-0ubuntu2 libapache2-mod-wsgi-py3=4.6.8-1ubuntu3 --no-install-recommends
+ ---> Using cache
+ ---> 8a5b44512398
+Step 7/23 : RUN ln /usr/bin/python3 /usr/bin/python
+ ---> Using cache
+ ---> aec05e2ab17d
+Step 8/23 : RUN apt-get -y install python3-pip=20.0.2-5ubuntu1 --no-install-recommends
+ ---> Using cache
+ ---> a4e6d3b7deb0
+Step 9/23 : RUN ln /usr/bin/pip3 /usr/bin/pip
+ ---> Using cache
+ ---> c14456607af8
+Step 10/23 : ENV PYTHONUNBUFFERED 1
+ ---> Using cache
+ ---> 8fc52a28a8ff
+Step 11/23 : COPY ./www /var/www/html
+ ---> Using cache
+ ---> e246f4d381da
+Step 12/23 : WORKDIR /var/www/html/linuxls_website
+ ---> Using cache
+ ---> 4fbf948352c3
+Step 13/23 : RUN pip3 install -r requirements.txt
+ ---> Using cache
+ ---> fd60869eb85d
+Step 14/23 : COPY ./config.json /etc/config.json
+ ---> Using cache
+ ---> 5d90bea5f0ce
+Step 15/23 : COPY ./linuxls_website.conf /etc/apache2/sites-available/000-default.conf
+ ---> Using cache
+ ---> 15c836f62892
+Step 16/23 : RUN chown :www-data /var/www/html/linuxls_website/db.sqlite3
+ ---> Using cache
+ ---> f281adc605a8
+Step 17/23 : RUN chmod 664 /var/www/html/linuxls_website/db.sqlite3
+ ---> Using cache
+ ---> 4767ce9022c8
+Step 18/23 : RUN chown :www-data /var/www/html/linuxls_website/
+ ---> Using cache
+ ---> 83a7fbfbfb42
+Step 19/23 : RUN chmod 775 /var/www/html/linuxls_website/
+ ---> Using cache
+ ---> 51d7135d767e
+Step 20/23 : RUN chown -R :www-data /var/www/html/linuxls_website/media/
+ ---> Using cache
+ ---> 912fb21f5181
+Step 21/23 : RUN chmod -R 775  /var/www/html/linuxls_website/media/
+ ---> Using cache
+ ---> c511e90a01f7
+Step 22/23 : EXPOSE 80 3500
+ ---> Using cache
+ ---> da71ea6b2323
+Step 23/23 : CMD ["apache2ctl", "-D", "FOREGROUND"]
+ ---> Using cache
+ ---> df9b234c6cf3
+Successfully built df9b234c6cf3
+Successfully tagged irtaza06/linuxls:blue
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u irtaza06 -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/workspace/linuxls_project_master@tmp/4f9faedc-22da-4868-9aeb-c5a4963d10c0/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker tag irtaza06/linuxls:blue irtaza06/linuxls:blue
+[Pipeline] isUnix
+[Pipeline] sh
++ docker push irtaza06/linuxls:blue
+The push refers to repository [docker.io/irtaza06/linuxls]
+0786a97c1529: Preparing
+250677908d80: Preparing
+424cdef3d45e: Preparing
+e455f5c363c0: Preparing
+fdf46785318a: Preparing
+9426bf63256a: Preparing
+c66a79f605c2: Preparing
+a62fe634886a: Preparing
+1a7a8c38a4cc: Preparing
+b763ef95b204: Preparing
+7a9df0203c5e: Preparing
+390d27235bbd: Preparing
+8e240322da15: Preparing
+3df76f5975df: Preparing
+803c0909a8ae: Preparing
+b7c6f39a4170: Preparing
+9d9d88ad4d68: Preparing
+ebb554619c86: Preparing
+8891751e0a17: Preparing
+2a19bd70fcd4: Preparing
+9e53fd489559: Preparing
+7789f1a3d4e9: Preparing
+9426bf63256a: Waiting
+c66a79f605c2: Waiting
+a62fe634886a: Waiting
+1a7a8c38a4cc: Waiting
+b763ef95b204: Waiting
+7a9df0203c5e: Waiting
+390d27235bbd: Waiting
+8e240322da15: Waiting
+3df76f5975df: Waiting
+803c0909a8ae: Waiting
+9e53fd489559: Waiting
+7789f1a3d4e9: Waiting
+b7c6f39a4170: Waiting
+9d9d88ad4d68: Waiting
+8891751e0a17: Waiting
+ebb554619c86: Waiting
+2a19bd70fcd4: Waiting
+0786a97c1529: Layer already exists
+250677908d80: Layer already exists
+fdf46785318a: Layer already exists
+424cdef3d45e: Layer already exists
+e455f5c363c0: Layer already exists
+1a7a8c38a4cc: Layer already exists
+b763ef95b204: Layer already exists
+9426bf63256a: Layer already exists
+a62fe634886a: Layer already exists
+c66a79f605c2: Layer already exists
+390d27235bbd: Layer already exists
+7a9df0203c5e: Layer already exists
+8e240322da15: Layer already exists
+3df76f5975df: Layer already exists
+803c0909a8ae: Layer already exists
+b7c6f39a4170: Layer already exists
+9d9d88ad4d68: Layer already exists
+ebb554619c86: Layer already exists
+8891751e0a17: Layer already exists
+2a19bd70fcd4: Layer already exists
+9e53fd489559: Layer already exists
+7789f1a3d4e9: Layer already exists
+blue: digest: sha256:0faf8377c3611273a3846bd9c14a5208df8e91b135820c136f8fb55e879a2d78 size: 4923
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Set current kubectl context)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ ./set_kubectl_context.sh
+Switched to context "arn:aws:eks:eu-central-1:397511642126:cluster/capstone".
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Create blue RC)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ ./run_blue_rc.sh
+replicationcontroller/blue unchanged
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Create green RC)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ ./run_green_rc.sh
+replicationcontroller/green unchanged
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Create bg-service/Loadbalancer)
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ ./run_bg_svc.sh
+service/linuxls-service unchanged
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Update service/redirect to green)
+[Pipeline] input
+continue?
+Yes or Abort
+Approved by Irtaza Hassan
+[Pipeline] withAWS
+Constructing AWS CredentialsSetting AWS region eu-central-1 
+ [Pipeline] {
+[Pipeline] sh
++ ./run_bg_svc_update.sh
+service/linuxls-service configured
+[Pipeline] }
+[Pipeline] // withAWS
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Remove Image Locally)
+[Pipeline] sh
++ docker rmi irtaza06/linuxls:blue
+Untagged: irtaza06/linuxls:blue
+Untagged: irtaza06/linuxls@sha256:0faf8377c3611273a3846bd9c14a5208df8e91b135820c136f8fb55e879a2d78
+Deleted: sha256:df9b234c6cf3244a24b060e470f5b5963c9e27f6846e69a5cccbd68891960180
+Deleted: sha256:da71ea6b23233490068cd922e0735fe4d5f7dc8e9ef7deb9bc2ffd248b96c230
+Deleted: sha256:c511e90a01f7708c5793f3e77a9ef46d86cbf9468801464267ccbe667265e8a3
+Deleted: sha256:6dae7bb97bd6d070a3c9854aa7794ea05dedc5afd399afcf0e625e924a03573e
+Deleted: sha256:912fb21f5181bc731b1ebd8e6ebcc24f7dc06380e867f29bb14382dccd697df6
+Deleted: sha256:7c17bf641f6bcec7bafdd9faf64ccf2eb7be512820d116c19ec35fcf8a6ce1c2
+Deleted: sha256:51d7135d767ef42ae9e2c934c4c6af633c975b9bd3bcd4c442de0c859bb1565d
+Deleted: sha256:5e810b272fc1604cf57884661a5ac667b7e4b3f816134a4b8df81931166d4f2e
+Deleted: sha256:83a7fbfbfb42b0d8dbe53277bf064d4e01006a0cec8c6419f3e36dbb9328bcf8
+Deleted: sha256:dde918df5778f9dae0c5e56efc00ef65229accf165241daff7cb84211b2be1ae
+Deleted: sha256:4767ce9022c81b184dc944c0b221aee1fa486cc4098134488284ac10a2275b93
+Deleted: sha256:4bf737842a8e8acca7d688ecabf3cef667212c51649b792bc9affe1da6792dae
+Deleted: sha256:f281adc605a88fecaf9e2d011b25c49cb999540b413b4358164339120c2c848b
+Deleted: sha256:69f746518e909b46968c69a48eebf8aea6a24b4f10fbe5fbb50d72714bb27a54
+Deleted: sha256:15c836f628929ea85dc7ffdd3093ad85d314511c27c48659d87aa2329ab00c69
+Deleted: sha256:e8ba590ef0f09c18aabf21d9a708d89dd5bbbb0e61ea2bc9a594501fe662dc81
+Deleted: sha256:5d90bea5f0ceac8dc3192afc577c95164ec85523efc1d01266f4e638dbf435dc
+Deleted: sha256:150b175e8819d5fda391f7db5e18cd5f8709799ff9fa87c879254167d1c44956
+Deleted: sha256:fd60869eb85d4e73f6b3e3c086b83e944fa4fc524257a184967d878d054f08e0
+Deleted: sha256:508cbba600fd6232f91f6f4b6d5a7476c7831c032889af92155ca0875b5d0c53
+Deleted: sha256:4fbf948352c3bc1b0cf6a9fcda6644fe83843727d6c74a751c5b6c60eeea0a13
+Deleted: sha256:e246f4d381da89eff149bf175d1353c8e709fc52a97f10b0f6b75da945123e84
+Deleted: sha256:70d984d43e23fe11b083695948e333908e47970ab3a131cb16e582687f03383e
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
